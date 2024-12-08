@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    /* cores padroes do site */
+    --gradiente: linear-gradient(90deg, #24A637 0%, #2DB394 100%);
+    --branco: #FFFFFF;
+    --verde: #26BB4B;
+    --verde-borda: #24A845;
+    --cinza-bordas: #DCDCDC;
+    --cinza-fonte: #707070;
+    --preto: #000000;
+
+    /* fonte padrao */
+    --kanit: "Kanit", sans-serif;
+}
+
+body, html{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}

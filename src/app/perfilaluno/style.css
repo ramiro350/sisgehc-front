@@ -1,0 +1,17 @@
+.perfil__container{
+    display: flex;
+    justify-content: space-between;
+    margin: 10em 8em 5em 8em;
+}
+
+.perfil__informacao{
+    color:  var( --cinza-fonte);
+    font-family: var(--kanit);
+    font-size: 18px;
+}
+
+.perfil__button{
+   margin-bottom: 4em;
+   margin-top: 3em;
+}
+

@@ -1,0 +1,27 @@
+#botao_criar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    background-color: #20aa2a;
+    color: white;
+    font-size: 40px;
+    border: 5px solid #198620;
+    cursor: pointer;
+}
+
+p {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+}
+
+.card__container {
+    border: 3px solid var(--cinza-bordas);  
+    border-radius: 15px;
+    width: 375px;
+    height: 550px;
+    margin: 1.8em 3em 1.8em 4em;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}

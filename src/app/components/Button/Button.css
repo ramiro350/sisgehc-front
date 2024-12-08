@@ -1,0 +1,71 @@
+.buttonbox button {
+    height: 40px;
+    width: 100px;
+    border-radius: 35px;
+    margin: 10px 12px;
+    background-color: white;
+    font-family: 'Kanit';
+    font-size: 15px;
+    border: 3px solid #dcdcdc;
+    box-shadow: 0px 2px 3px 2px #b4b4b4;
+    cursor: pointer;
+}
+
+.buttonbox .btn-vermelho {
+    height: 40px;
+    width: 100px;
+    border-radius: 35px;
+    margin: 10px 12px;
+    background-color: #ff0000;
+    font-family: 'Kanit';
+    font-size: 15px;
+    border: none;
+    color: white;
+    border: 3px solid #d80000;
+    box-shadow: 0px 2px 3px 2px #b4b4b4;
+}
+
+.buttonbox .btn-verde {
+    height: 40px;
+    width: 100px;
+    border-radius: 35px;
+    margin: 10px 12px;
+    background-color: #26bb4b;
+    font-family: 'Kanit';
+    font-size: 15px;
+    border: none;
+    color: white;
+    border: 3px solid #20aa2a;
+    box-shadow: 0px 2px 3px 2px #b4b4b4;
+}
+
+.buttonbox .btn-verdeg {
+    height: 40px;
+    width: 476px;
+    border-radius: 35px;
+    margin: 20px 12px;
+    background-color: var(--verde);
+    font-family: 'Kanit';
+    font-size: 15px;
+    border: none;
+    color: white;
+    border: 3px solid #20aa2a;
+    box-shadow: 0px 2px 3px 2px #b4b4b4;
+}
+
+.buttonbox .btn-verdeclarog {
+    height: 40px;
+    width: 476px;
+    border-radius: 35px;
+    margin: 8px 12px;
+    font-family: 'Kanit';
+    font-size: 15px;
+    border: none;
+    color: #20aa2a;
+    border: 3px solid #20aa2a;
+    box-shadow: 0px 2px 3px 2px #b4b4b4;
+}
+
+.buttonbox .btn-verdeg:hover{
+    background-color: var(--verde-borda) ;
+}

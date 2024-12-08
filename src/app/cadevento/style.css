@@ -1,0 +1,50 @@
+:root {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+}
+
+h4 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 42px;
+    margin-top: 40px;
+}
+
+.coluna{
+    margin: auto;
+}
+
+.qrcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+#buttonDivRight {
+    text-align: right;
+    position: bottom;
+    padding: 10px 0px;
+}
+
+#buttonDivLeft {
+    position: bottom;
+    padding: 10px 0px;
+}

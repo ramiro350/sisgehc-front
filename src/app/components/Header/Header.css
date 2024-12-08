@@ -1,0 +1,35 @@
+.cabecalho{
+    height: 140px;
+    background: var(--gradiente);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.cabecalho__t1{
+    color: var(--branco);
+    font-family: var(--kanit);
+    font-size: 37px;
+    font-weight: 900;
+    margin: 0;
+    line-height: 55px;
+}
+
+.cabecalho__t2{
+    color: var(--branco);
+    font-family: var(--kanit);
+    font-size: 17px;
+    font-weight: 300;
+    margin: 0;
+    line-height: 22px;
+}
+
+.cabecalho__container1{
+    margin-left: 40px;
+}
+
+.cabecalho__container2{
+    margin-right: 40px;
+    cursor: pointer;
+}

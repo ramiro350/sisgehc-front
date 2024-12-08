@@ -1,0 +1,13 @@
+.login__container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 15.3em 0;
+}
+
+.mainPage__title{
+    font-family: var(--kanit);
+   
+    font-size: 30px;
+    font-weight: 500;
+}

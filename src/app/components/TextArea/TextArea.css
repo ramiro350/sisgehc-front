@@ -1,0 +1,16 @@
+.textbox p {
+    font-family: 'Kanit', sans-serif;
+    font-size: 18px;
+    margin: 5px 10px;
+}
+
+.textbox textarea {
+    width: 450px;
+    height: 125px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-family: 'Kanit';
+    border: 3px solid #d9d9d9;
+    background-color: #f9f9f9;
+    padding: 5px 10px;
+}

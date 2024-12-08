@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.page__title{
+    font-family: var(--kanit);
+    margin: 2.12em 0 0 2.5em;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.container__button{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-right: 64px;
+}
