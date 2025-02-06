@@ -7,8 +7,12 @@
 
 .cards{
     display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1.4em;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    white-space: nowrap;
 }
 
 .card__container
