@@ -9,10 +9,10 @@
     display: flex;
     flex-direction: row;
     overflow-x: auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    white-space: nowrap;
+    padding: 5px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 8px; */
+    /* white-space: nowrap; */
 }
 
 .card__container
@@ -29,7 +29,7 @@
     font-weight: 700;
     font-size: 30px;
     height: 208px;
-    color: var(--branco);
+    color: gray
 }
 
 .card__titulo p{
@@ -69,7 +69,7 @@
     font-weight: 500;
     font-size: 25px;
     border-radius: 15px;
-    margin-top: 1.5em;
+    margin-top: 1em;
 }
 
 .card__button:hover{

@@ -11,7 +11,7 @@ const mockData: Evento[] = [
   {
     id: 1,
     nome: 'Evento 1',
-    imagem: '/src/app/components/Card/imagem_teste.png',
+    imagem: '/images/imagem_teste.png',
     dataInicio: '2023-10-01T00:00:00Z',
     dataFim: '2023-10-05T00:00:00Z',
     responsavel: 'Responsável 1',
@@ -23,7 +23,7 @@ const mockData: Evento[] = [
   {
     id: 2,
     nome: 'Evento 2',
-    imagem: '/src/app/components/Card/imagem_teste.png',
+    imagem: '/images/imagem_teste.png',
     dataInicio: '2023-11-01T00:00:00Z',
     dataFim: '2023-11-05T00:00:00Z',
     responsavel: 'Responsável 2',
@@ -35,7 +35,7 @@ const mockData: Evento[] = [
   {
     id: 3,
     nome: 'Evento 2',
-    imagem: '/src/app/components/Card/imagem_teste.png',
+    imagem: '/images/imagem_teste.png',
     dataInicio: '2023-11-01T00:00:00Z',
     dataFim: '2023-11-05T00:00:00Z',
     responsavel: 'Responsável 2',
@@ -47,7 +47,7 @@ const mockData: Evento[] = [
   {
     id: 4,
     nome: 'Evento 2',
-    imagem: '/src/app/components/Card/imagem_teste.png',
+    imagem: '/images/imagem_teste.png',
     dataInicio: '2023-11-01T00:00:00Z',
     dataFim: '2023-11-05T00:00:00Z',
     responsavel: 'Responsável 2',
@@ -112,19 +112,21 @@ function Card() {
           <Fragment key={item.id}>
             <div className="card__container">
               <div className="card__titulo">
-                <Image src={item.imagem} alt="Imagem evento" width={375} height={190} className="card__image" />
-                <p className='ajuste__titulo'>{item.nome}</p>
+                <Image src={item.imagem} width={375} height={190} className="">
+                </Image>
               </div>
 
               <div className="card__informacoes">
                 <div>
+
+                  <p className='ajuste__titulo'>{item.nome}</p>
                   <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
-                  <p>{item.responsavel}</p>
+                  <p>{item.descricao}</p>
                   <p>{item.horaInicio} - {item.horaFim}</p>
                 </div>
                 <div className='ajuste__texto'>
-                  <p>Descrição:</p>
-                  <p className='ajuste__texto2'>{item.descricao}</p>
+                  <p>Realização:</p>
+                  <p className='ajuste__texto2'>{item.responsavel}</p>
                 </div>
                 <button className='card__button' onClick={() => sendIdEvento(item.id)}>Se inscrever</button>
               </div>
