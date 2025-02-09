@@ -48,6 +48,7 @@ export interface Evento{
     horaFim: string;
     descricao: string;
     imagem: string;
+    inscrito: boolean;
 }
 
 export interface inputFileProps {
