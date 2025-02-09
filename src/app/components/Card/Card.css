@@ -7,8 +7,9 @@
 
 .cards{
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    /* flex-direction: row;
+    overflow-x: auto; */
     padding: 5px;
     /* border: 1px solid #ccc; */
     /* border-radius: 8px; */
