@@ -105,14 +105,14 @@ function Card() {
   }
 
   return (
-    <>
+    <div className=''>
       <p className='page__titulo'>Eventos Disponíveis</p>
-      <div className='cards'>
+      <div className='cards row'>
         {data.map((item: Evento) => (
           <Fragment key={item.id}>
-            <div className="card__container">
+            <div className="card__container col-3">
               <div className="card__titulo">
-                <Image src={item.imagem} width={375} height={190} className="">
+                <Image src={item.imagem} width={350} height={190} className="img-fluid">
                 </Image>
               </div>
 
@@ -134,7 +134,7 @@ function Card() {
           </Fragment>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
