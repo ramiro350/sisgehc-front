@@ -170,91 +170,67 @@ function CardsInscricoes() {
   }
 
   return (
-    <div className='container'>
       <div className=''>
-        <p className='page__titulo'>Eventos Inscritos | Eventos Disponíveis</p>
-        <div className='cards'>
-        {(() => {
-          const elements = [];
-          for (let i = 0; i < dataInscritos.length; i++) {
-            const item = dataInscritos[i];
-            const isLast = i === dataInscritos.length - 1;
-            const isFirst =  i === 0;
-
-            elements.push(
-              
-              <Fragment key={item.id}>
-                {/* {isFirst && <p className='page__titulo'>Eventos Inscritos</p>} */}
-                <div
-                  className="card__container"
-                  
-                >
-                  <div className="card__titulo">
-                    <Image src={item.imagem} width={375} height={190} className="" alt='' />
-                  </div>
-
-                  <div className="card__informacoes">
-                    <div>
-                      <p className='ajuste__titulo'>{item.nome}</p>
-                      <p>
-                        De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até{" "}
-                        {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}
-                      </p>
-                      <p>{item.descricao}</p>
-                      <p>{item.horaInicio} - {item.horaFim}</p>
-                    </div>
-                    <div className='ajuste__texto'>
-                      <p>Realização:</p>
-                      <p className='ajuste__texto2'>{item.responsavel}</p>
-                    </div>
-                    <button className='card__button' onClick={() => sendIdEvento(item.id)}>Se inscrever</button>
-                  </div>
+        <p className='page__titulo'>Eventos Disponíveis</p>
+        <div className='cards row'>
+          {data.map((item: Evento) => (
+            <Fragment key={item.id}>
+              <div className="card__container col-3">
+                <div className="card__titulo">
+                  <Image src={item.imagem} width={350} height={190} className="img-fluid">
+                  </Image>
                 </div>
-              </Fragment>
-            );
-          }
-          return elements;
-        })()}
-        <hr style={{"rotate": "180deg"}}/>
-          {(() => {
-            const elements = [];
-            for (let i = 0; i < data.length; i++) {
-              const item = data[i];
-              const isFirst =  i === 0;
-              elements.push(
-                <Fragment key={item.id}>
-                  {/* {isFirst && <p className='page__titulo'>Eventos Disponíveis</p>} */}
-                  <div className="card__container">
-                    <div className="card__titulo">
-                      <Image src={item.imagem} width={375} height={190} className="" alt='' />
-                    </div>
   
-                    <div className="card__informacoes">
-                      <div>
-                        <p className='ajuste__titulo'>{item.nome}</p>
-                        <p>
-                          De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até{" "}
-                          {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}
-                        </p>
-                        <p>{item.descricao}</p>
-                        <p>{item.horaInicio} - {item.horaFim}</p>
-                      </div>
-                      <div className='ajuste__texto'>
-                        <p>Realização:</p>
-                        <p className='ajuste__texto2'>{item.responsavel}</p>
-                      </div>
-                      <button className='card__button' onClick={() => sendIdEvento(item.id)}>Se inscrever</button>
-                    </div>
+                <div className="card__informacoes">
+                  <div>
+  
+                    <p className='ajuste__titulo'>{item.nome}</p>
+                    <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
+                    <p>{item.descricao}</p>
+                    <p>{item.horaInicio} - {item.horaFim}</p>
                   </div>
-                </Fragment>
-              );
-            }
-            return elements;
-          })()}
+                  <div className='ajuste__texto'>
+                    <p>Realização:</p>
+                    <p className='ajuste__texto2'>{item.responsavel}</p>
+                  </div>
+                  <button className='card__button' onClick={() => sendIdEvento(item.id)}>Se inscrever</button>
+                </div>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+        <div className=''>
+          <p className='page__titulo'>Eventos Inscritos</p>
+          <div className='cards row'>
+          {dataInscritos.map((item: Evento) => (
+            <Fragment key={item.id}>
+              <div className="card__container col-3">
+                <div className="card__titulo">
+                  <Image src={item.imagem} width={350} height={190} className="img-fluid">
+                  </Image>
+                </div>
+  
+                <div className="card__informacoes">
+                  <div>
+  
+                    <p className='ajuste__titulo'>{item.nome}</p>
+                    <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
+                    <p>{item.descricao}</p>
+                    <p>{item.horaInicio} - {item.horaFim}</p>
+                  </div>
+                  <div className='ajuste__texto'>
+                    <p>Realização:</p>
+                    <p className='ajuste__texto2'>{item.responsavel}</p>
+                  </div>
+                  <button className='card__button' onClick={() => sendIdEvento(item.id)}>Realizar check-in</button>
+                </div>
+              </div>
+            </Fragment>
+          ))}
+          </div>
         </div>
       </div>
-    </div>
-  );  
+    );  
 }
 
 

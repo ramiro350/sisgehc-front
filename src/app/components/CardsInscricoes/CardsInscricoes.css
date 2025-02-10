@@ -1,14 +1,15 @@
 .page__titulo{
   font-family: var(--kanit);
-  margin: 2.5em 0 0 2.5em;
+  margin: 2.5em 0 0 1.2em;
   font-size: 30px;
   font-weight: 500;
 }
 
 .cards{
   display: flex;
-  flex-direction: row;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  /* flex-direction: row;
+  overflow-x: auto; */
   padding: 5px;
   /* border: 1px solid #ccc; */
   /* border-radius: 8px; */
@@ -19,9 +20,10 @@
 {
   border: 3px solid var(--cinza-bordas);  
   border-radius: 15px;
-  width: 375px;
-  height: 550px;
-  margin: 1.8em 3em 1.8em 4em;
+  width: 350px;
+  /* height: 550px; */
+  margin: 10px 0px 10px 30px;
+  /* margin: 1.8em 3em 1.8em 3em; */
 }
 
 .card__titulo{
@@ -63,7 +65,7 @@
   background-color: var(--verde);
   border: 3px solid var(--verde-borda);
   height: 65px;
-  width: 335px;
+  width: 310px;
   font-family: var(--kanit);
   color: var(--branco);
   font-weight: 500;
