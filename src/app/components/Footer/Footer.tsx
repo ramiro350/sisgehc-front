@@ -12,7 +12,7 @@ const Footer = ({logoUece}: footerProps) => {
                 <p>Governo do Estado do Ceará</p>
                 <p>Todos os direitos reservados</p>
             </div>
-            {logoUece ? <Image src="./images/LogoUece.svg" alt='Logo Uece' width={300} height={70}/> : <div className='ajuste'></div>}
+            {logoUece ? <Image src="/images/LogoUece.svg" alt='Logo Uece' width={300} height={70}/> : <div className='ajuste'></div>}
         </footer>
     );
 }

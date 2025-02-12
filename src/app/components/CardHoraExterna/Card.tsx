@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Evento } from '@/types';
 import {format} from 'date-fns';
 import {ptBR} from 'date-fns/locale';
+import Button from "../Button/Button";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 
 const mockData: Evento[] = [
@@ -136,6 +137,11 @@ function Card() {
             </div>
           </Fragment>
         ))}
+      </div>
+      <div  style={{"alignItems": "center", "display": "flex", "flexDirection": "row"}}>
+        <div id="buttonDivLeft ">
+              <Button text="Voltar" color="" pagina='/HomeProfessor'/>
+        </div>
       </div>
     </div>
   );

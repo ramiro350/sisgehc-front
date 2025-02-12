@@ -8,7 +8,7 @@ export default function HomeCoordenadorHorasExternas()
         <>
             <Header isCoordenador/>
             <Card/>
-            <Footer/>
+            <Footer logoUece/>
         </>
   );
 }
