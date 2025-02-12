@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 
-const Header = ({isLoginScreen, isProfessor}:headerProps) =>{
+const Header = ({isLoginScreen, isProfessor, isCoordenador}:headerProps) =>{
 
     const router = useRouter();
 
@@ -45,6 +45,23 @@ const Header = ({isLoginScreen, isProfessor}:headerProps) =>{
                 <div className='cabecalho__container2'>
                     <p className='cabecalho__t1'>Professor</p>
                     <p className='cabecalho__t2'>Perfil do Professor</p>
+                </div>
+            </header>
+        );
+    }
+    else if(isCoordenador){
+        return(
+            <header className='cabecalho'>
+                <div className='cabecalho__container1'>
+                    <p className='cabecalho__t1'>SISGEHC</p>
+                    <div>
+                        <p className='cabecalho__t2'>Sistema de Gerenciamento de Horas</p>
+                        <p className='cabecalho__t2'>Complementares</p>
+                    </div>
+                </div>
+                <div className='cabecalho__container2'>
+                    <p className='cabecalho__t1'>Coordenador</p>
+                    <p className='cabecalho__t2'>Perfil do Coordenador</p>
                 </div>
             </header>
         );

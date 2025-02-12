@@ -1,6 +1,7 @@
 export default interface headerProps{
     isLoginScreen?: boolean; 
     isProfessor?: boolean;
+    isCoordenador?: boolean;
 }
 
 export interface inputProps{
