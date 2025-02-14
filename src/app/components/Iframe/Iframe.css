@@ -1,0 +1,13 @@
+.page__titulo{
+  font-family: var(--kanit);
+  margin: 2.5em 0 0 1.2em;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+#outerContainer #mainContainer div.toolbar #toolbarContainer{
+  display: none !important; /* hide PDF viewer toolbar */
+}
+#outerContainer #mainContainer #viewerContainer {
+  top: 0 !important; /* move doc up into empty bar space */
+}

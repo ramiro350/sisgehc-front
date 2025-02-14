@@ -62,3 +62,7 @@ export interface inputFileProps {
 export interface footerProps{
     logoUece?: boolean;
 }
+
+export interface IFrameProps{
+    id: string;
+}
