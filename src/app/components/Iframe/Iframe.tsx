@@ -40,7 +40,7 @@ const IFrame = ({id}: IFrameProps) =>
     }
   };
   
-    
+
 
     return (
       <div className=''>
@@ -51,7 +51,7 @@ const IFrame = ({id}: IFrameProps) =>
         </button> */}
         <div className='align-self-left' style={{"marginLeft": "2.5rem"}}>
         {(
-          <iframe src="/teste.pdf#toolbar=0" width="700px" height="400px" style={{ border: "none" }} />
+          <iframe src={`${pdfURL}#toolbar=0`} width="700px" height="400px" style={{ border: "none" }} />
         )}
         </div>
         <div  style={{"alignItems": "left", "display": "flex", "flexDirection": "row", "justifyContent": "start"}}>
