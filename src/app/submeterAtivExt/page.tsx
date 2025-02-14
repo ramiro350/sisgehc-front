@@ -90,7 +90,7 @@ export default function submeterAtivExt() {
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/eventos/', {
+      const response = await fetch('http://127.0.0.1:8000/atividadeExterna', {
         method: 'POST',
         body: formData,
       });
