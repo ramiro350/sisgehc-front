@@ -17,36 +17,36 @@ import "./style.css";
 export default function submeterAtivExt() {
 
   //modal
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
-  };
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const toggleModal = () => {
+  //   setIsModalVisible(!isModalVisible);
+  // };
 
   // Estados para armazenar os valores dos inputs
-  const [nomeEvento, setNomeEvento] = useState('');
-  const [horasEvento, setHorasEvento] = useState('');
+  const [cargaHoraria, setCargaHoraria] = useState(0);
+  const [tipoHora, setTipoHora] = useState('');
   const [descricaoEvento, setDescricaoEvento] = useState('');
   const [logoEvento, setLogoEvento] = useState(null); // Para o arquivo
   const [responsavel, setResponsavel] = useState('');
   const [local, setLocal] = useState('');
   const [curso, setCurso] = useState<number | null>(null);
-  const [dataInicio, setDataInicio] = useState('');
+  const [dataSubmissao, setDataSubmissao] = useState('');
   const [horaInicio, setHoraInicio] = useState('');
-  const [dataFim, setDataFim] = useState('');
+  const [dataValidacao, setDataValidacao] = useState('');
   const [horaFim, setHoraFim] = useState('');
   const [certificado, setCertificado] = useState('');
 
   // parametros usados para a geracao do qrcode
   const qrCodeData = JSON.stringify({
-    nomeEvento,
-    horasEvento,
+    cargaHoraria,
+    tipoHora,
     descricaoEvento,
     responsavel,
     local,
     curso,
-    dataInicio,
+    dataSubmissao,
     horaInicio,
-    dataFim,
+    dataValidacao,
     horaFim,
   });
 
@@ -68,21 +68,23 @@ export default function submeterAtivExt() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('nome', nomeEvento);
-    formData.append('horasComplementares', horasEvento);
-    formData.append('descricao', descricaoEvento);
-
-    if (logoEvento) {
-      formData.append('imagem', logoEvento); 
-    }
-    formData.append('professor', 'professor');
-    formData.append('responsavel', responsavel);
-    formData.append('local', local);
-    formData.append('curso', curso);
-    formData.append('dataInicio', dataInicio);
-    formData.append('horaInicio', horaInicio);
-    formData.append('dataFim', dataFim);
-    formData.append('horaFim', horaFim);
+    formData.append('carga_horaria', cargaHoraria);
+    formData.append('tipo_atividade', tipoHora);
+    formData.append('sub_tipo', descricaoEvento);
+    formData.append('area_de_conhecimento', descricaoEvento);
+    // if (logoEvento) {
+    //   formData.append('imagem', logoEvento); 
+    // }
+    // formData.append('professor', 'professor');
+    formData.append('coordenador', parseInt(responsavel));
+    formData.append('aluno', parseInt(responsavel));
+    // formData.append('local', local);
+    // formData.append('curso', curso);
+    formData.append('data_submissao', dataSubmissao);
+    // formData.append('horaInicio', horaInicio);
+    formData.append('data_validacao', dataValidacao);
+    // formData.append('horaFim', horaFim);
+    formData.append('arquivo_certificacao', certificado)
 
     // Usando forEach para depurar o FormData
     formData.forEach((value, key) => {
@@ -90,7 +92,7 @@ export default function submeterAtivExt() {
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/atividadeExterna', {
+      const response = await fetch('http://127.0.0.1:8000/submeter/', {
         method: 'POST',
         body: formData,
       });
@@ -122,16 +124,17 @@ export default function submeterAtivExt() {
       <form onSubmit={handleSubmit} className="frame">
         <div className="coluna">
           <Input
-            placeholder="Adicione um nome"
+            placeholder="Adicione a carga horária"
             text="Atividade"
-            value={nomeEvento}
-            onChange={(e) => setNomeEvento(e.target.value)}
+            value={cargaHoraria}
+            onChange={(e) => setCargaHoraria(e.target.value)}
+            type='number'
           />
           <Select
             placeholder="Defina o tipo de hora"
             text="Tipo de hora complementar"
-            value={horasEvento}
-            onChange={(e) => setHorasEvento(e.target.value)}
+            value={tipoHora}
+            onChange={(e) => setTipoHora(e.target.value)}
           />
           <TextArea
             placeholder="Descreva seu evento"
@@ -154,16 +157,16 @@ export default function submeterAtivExt() {
           <div className="frame">
             <div>
               <DataInput
-                text="Data de início"
-                value={dataInicio}
-                onChange={(e) => setDataInicio(e.target.value)}
+                text="Data de Submissão"
+                value={dataSubmissao}
+                onChange={(e) => setDataSubmissao(e.target.value)}
               />
             </div>
             <div>
               <DataInput
-                text="Data de término"
-                value={dataFim}
-                onChange={(e) => setDataFim(e.target.value)}
+                text="Data de Validação"
+                value={dataValidacao}
+                onChange={(e) => setDataValidacao(e.target.value)}
               />
             </div>
           </div>

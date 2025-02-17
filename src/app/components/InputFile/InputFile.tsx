@@ -6,7 +6,7 @@ const InputFile = ({id, name, text, onChange}: inputFileProps) => {
   return (
     <div className='inputbox'>
         <p>{text}</p>
-        <input type="file" accept='image/*' id={id} name={name} onChange={onChange}/>
+        <input type="file"  id={id} name={name} onChange={onChange}/>
     </div>
   )
 }
