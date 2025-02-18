@@ -125,7 +125,7 @@ export default function submeterAtivExt() {
         <div className="coluna">
           <Input
             placeholder="Adicione a carga horária"
-            text="Atividade"
+            text="Carga horária"
             value={cargaHoraria}
             onChange={(e) => setCargaHoraria(e.target.value)}
             type='number'
