@@ -42,14 +42,30 @@ export interface Evento{
     id: number;
     nome: string;
     professor: number;
-    responsavel: string;
+    tipo: string;
+    // responsavel: string;
     dataInicio: string;
     dataFim: string;
     horaInicio: string; 
     horaFim: string;
+    limiteInscricao: string;
     descricao: string;
-    imagem: string;
-    inscrito: boolean;
+    curso: number
+    // imagem: string;
+    // inscrito: boolean;
+}
+
+export interface AtividadeComplementar {
+    id_atividade: number;
+    carga_horaria: number;
+    data_submissao: string;
+    data_validacao: string;
+    arquivo_certificado: string;
+    tipo_atividade: string;
+    sub_tipo: string;
+    area_de_conhecimento: string;
+    aluno: number;
+    coordenador: number;
 }
 
 export interface inputFileProps {

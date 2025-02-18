@@ -2,11 +2,12 @@
 import './Card.css';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
-import { Evento } from '@/types';
+import { AtividadeComplementar, Evento } from '@/types';
 import {format} from 'date-fns';
 import {ptBR} from 'date-fns/locale';
 import Button from "../Button/Button";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
+import { useRouter } from "next/navigation";
 
 const mockData: Evento[] = [
   {
@@ -65,9 +66,35 @@ const mockData: Evento[] = [
 ];
 
 function Card() {
-  const [data, setData] = useState<Evento[]>([]);
+  const [data, setData] = useState<AtividadeComplementar[]>([]);
   const [loading, setLoading] = useState(true);
   const [idEvento, setIdEvento] = useState<number | null>();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/atividades_complementares/', {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setData(result);
+          console.log('Data fetched successfully', result);
+        } else {
+          console.error('Error fetching data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async () => {
     const formData = new FormData();
@@ -75,7 +102,7 @@ function Card() {
     formData.append('Aluno', 6);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/inscricao/', {
+      const response = await fetch(`http://127.0.0.1:8000/inscricao/validar/${idEvento}`, {
         method: 'POST',
         body: formData,
       });
@@ -99,11 +126,11 @@ function Card() {
     handleSubmit();
   }
 
-  useEffect(() => {
-    // Simulate data fetching with mock data
-    setData(mockData);
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   // Simulate data fetching with mock data
+  //   setData(mockData);
+  //   setLoading(false);
+  // }, []);
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -113,26 +140,27 @@ function Card() {
     <div className=''>
       <p className='page__titulo'>Validações de certificados externos pendentes</p>
       <div className='cards row'>
-        {data.map((item: Evento) => (
-          <Fragment key={item.id}>
+        {data.map((item: AtividadeComplementar) => (
+          <Fragment key={item.id_atividade}>
             <div className="card__container col-3">
-              <div className="card__titulo">
+              {/* <div className="card__titulo">
                 <Image src={item.imagem} width={350} height={190} className="img-fluid">
                 </Image>
-              </div>
+              </div> */}
 
               <div className="card__informacoes">
                 <div>
-                  <p className='ajuste__titulo'>{item.nome}</p>
-                    <p>Aluno:</p>
-                    <p className='ajuste__texto2'>{item.responsavel}</p>
+                    <p>Tipo:</p>
+                  <p className='ajuste__titulo'>{item.tipo_atividade}</p>
+                    <p>Sub-Tipo:</p>
+                    <p className='ajuste__texto2'>{item.sub_tipo}</p>
                 </div>
                 <div className='ajuste__texto'>
-                  <p>Realização:</p>
-                  <p className='ajuste__texto2'>{item.responsavel}</p>
+                  <p>Área:</p>
+                  <p className='ajuste__texto2'>{item.area_de_conhecimento}</p>
                 </div>
-                <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
-                <button className='card__button' onClick={() => sendIdEvento(item.id)}>Validar</button>
+                <p>Data de submissão {format(new Date(item.data_submissao), "dd 'de' MMMM", { locale: ptBR })}</p>
+                <button className='card__button' onClick={() => sendIdEvento(item.id_atividade)}>Validar</button>
               </div>
             </div>
           </Fragment>

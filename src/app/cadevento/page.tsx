@@ -67,21 +67,22 @@ export default function Cadevento() {
 
     const formData = new FormData();
     formData.append('nome', nomeEvento);
-    formData.append('horasComplementares', horasEvento);
-    formData.append('descricao', descricaoEvento);
+    formData.append('horas_complementares', parseInt(horasEvento));
+    formData.append('descricao_evento', descricaoEvento);
 
-    if (logoEvento) {
-      formData.append('imagem', logoEvento); 
-    }
-    formData.append('professor', 'professor');
-    formData.append('responsavel', responsavel);
-    formData.append('local', local);
-    formData.append('curso', curso);
-    formData.append('dataInicio', dataInicio);
-    formData.append('horaInicio', horaInicio);
-    formData.append('dataFim', dataFim);
-    formData.append('horaFim', horaFim);
-
+    // if (logoEvento) {
+    //   formData.append('imagem', logoEvento); 
+    // }
+    // formData.append('professor', 'professor');
+    formData.append('professor', parseInt(responsavel));
+    // formData.append('local', local);
+    formData.append('curso', parseInt(responsavel));
+    formData.append('data_inicio', dataInicio);
+    formData.append('hora_inicio', horaInicio);
+    formData.append('data_encerramento', dataFim);
+    formData.append('hora_encerrado', horaFim);
+    formData.append('limite_inscricao', dataFim);
+    formData.append('tipo', descricaoEvento);
     // Usando forEach para depurar o FormData
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);

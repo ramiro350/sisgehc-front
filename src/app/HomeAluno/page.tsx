@@ -8,7 +8,7 @@ export default function HomeAluno() {
         <>
             <Header isLoginScreen/>
             <Card/>
-            <Footer/>
+            <Footer logoUece/>
         </>
     );
 }
