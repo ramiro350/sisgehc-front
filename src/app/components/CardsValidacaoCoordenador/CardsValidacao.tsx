@@ -3,12 +3,13 @@ import './CardsValidacao.css';
 import Image from 'next/image';
 import Button from '../Button/Button';
 import { Fragment, useEffect, useState } from 'react';
-import { Evento } from '@/types';
+import { AtividadeComplementar, Evento } from '@/types';
 import {format} from 'date-fns';
 import {ptBR} from 'date-fns/locale';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 const mockDataInscritos: Evento[] = [
   {
@@ -123,13 +124,35 @@ const mockData: Evento[] = [
 ];
 
 function Cards() {
-  const [data, setData] = useState<Evento[]>([]);
-  const [dataInscritos, setDataInscritos] = useState<Evento[]>([]);
+  const [data, setData] = useState<AtividadeComplementar[]>([]);
   const [loading, setLoading] = useState(true);
   const [idEvento, setIdEvento] = useState<number | null>();
 
+  const router = useRouter();
 
-  const eventosTotais = [...data, ...dataInscritos];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/atividades_complementares/', {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setData(result);
+          console.log('Data fetched successfully', result);
+        } else {
+          console.error('Error fetching data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async () => {
     const formData = new FormData();
@@ -137,7 +160,7 @@ function Cards() {
     formData.append('Aluno', 6);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/inscricao/', {
+      const response = await fetch(`http://127.0.0.1:8000/inscricao/validar/${idEvento}`, {
         method: 'POST',
         body: formData,
       });
@@ -156,89 +179,86 @@ function Cards() {
   }
 
   function sendIdEvento(id: number) {
-    setIdEvento(id);
-    console.log(id);
-    handleSubmit();
+    // setIdEvento(id);
+    // console.log(id);
+    // handleSubmit();
+    router.push("/visualizarCertificadoExterno")
   }
 
-  useEffect(() => {
-    // Simulate data fetching with mock data
-    setData(mockData);
-    setDataInscritos(mockDataInscritos);
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   // Simulate data fetching with mock data
+  //   setData(mockData);
+  //   setLoading(false);
+  // }, []);
 
   if (loading) {
     return <p>Carregando...</p>;
   }
 
   return (
-      <div className=''>
-        <p className='page__titulo'>Validações de certificados externos pendentes</p>
-        <div className='cards row'>
-          {data.map((item: Evento) => (
-            <Fragment key={item.id}>
-              <div className="card__container col-3">
-                <div className="card__titulo">
-                  <Image src={item.imagem} width={350} height={190} className="img-fluid">
-                  </Image>
-                </div>
-  
-                <div className="card__informacoes">
-                  <div>
-                    <p className='ajuste__titulo'>{item.nome}</p>
-                      <p>Aluno:</p>
-                      <p className='ajuste__texto2'>{item.responsavel}</p>
-                  </div>
-                  <div className='ajuste__texto'>
-                    <p>Realização:</p>
-                    <p className='ajuste__texto2'>{item.responsavel}</p>
-                  </div>
-                  <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
-                  <button className='card__button' onClick={() => sendIdEvento(item.id)}>Validar</button>
-                </div>
+    <div>
+      <p className='page__titulo'>Validações de certificados externos pendentes</p>
+      <div className='cards row'>
+        {data.map((item) => (
+          <div key={item.id_atividade} className="card__container col-3">
+            <div className="card__titulo">
+              <Image src={"/images/imagem_teste.png"} width={350} height={190} className="img-fluid" alt="Imagem Teste" />
+            </div>
+            <div className="card__informacoes">
+              <div>
+                <p>Tipo:</p>
+                <p className='ajuste__titulo'>{item.tipo_atividade}</p>
+                <p>Sub-Tipo:</p>
+                <p className='ajuste__texto2'>{item.sub_tipo}</p>
               </div>
-            </Fragment>
-          ))}
-        </div>
-        <p className='page__titulo'>Validações ou recusas feitas</p>
-        <div className='cards row'>
-          {data.map((item: Evento) => (
-            <Fragment key={item.id}>
-              <div className="card__container col-3">
-                <div className="card__titulo">
-                  <Image src={item.imagem} width={350} height={190} className="img-fluid">
-                  </Image>
-                </div>
-  
-                <div className="card__informacoes">
-                  <div>
-                    <p className='ajuste__titulo'>{item.nome}</p>
-                      <p>Aluno:</p>
-                      <p className='ajuste__texto2'>{item.responsavel}</p>
-                  </div>
-                  <div style={{"display": "flex", "flexDirection": "row", "alignItems": "end", "justifyContent": "end"}}>
-                  <FontAwesomeIcon icon={faCircleXmark} style={{ color: "red", fontSize: "32px", justifyContent: "end" }}></FontAwesomeIcon>
-
-                  </div>
-                  <div className='ajuste__texto'>
-                    <p>Realização:</p>
-                    <p className='ajuste__texto2'>{item.responsavel}</p>
-                  </div>
-                  <p>De {format(new Date(item.dataInicio), "dd 'de' MMMM", { locale: ptBR })} até {format(new Date(item.dataFim), "dd 'de' MMMM", { locale: ptBR })}</p>
-                  <button className='card__button' onClick={() => sendIdEvento(item.id)}>Detalhes</button>
-                </div>
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "end", justifyContent: "end" }}>
+                <FontAwesomeIcon icon={faCircleCheck} style={{ color: "green", fontSize: "32px" }} />
               </div>
-            </Fragment>
-          ))}
-        </div>
-        <div  style={{"alignItems": "center", "display": "flex", "flexDirection": "row"}}>
-          <div id="buttonDivLeft ">
-                <Button text="Voltar" color="" pagina='/HomeProfessor'/>
+                <div className='ajuste__texto'>
+                  <p>Área:</p>
+                  <p className='ajuste__texto2'>{item.area_de_conhecimento}</p>
+                </div>
+              <p>Data de submissão {format(new Date(item.data_submissao), "dd 'de' MMMM", { locale: ptBR })} | Data de validação {format(new Date(item.data_validacao), "dd 'de' MMMM", { locale: ptBR })}</p>
+              <button className='card__button' onClick={() => sendIdEvento(item.id_atividade)}>Validar</button>
+            </div>
           </div>
+        ))}
+      </div>
+      <p className='page__titulo'>Validações ou recusas feitas</p>
+      <div className='cards row'>
+        {data.map((item) => (
+          <div key={item.id_atividade} className="card__container col-3">
+            <div className="card__titulo">
+              <Image src={"/images/imagem_teste.png"} width={350} height={190} className="img-fluid" alt="Imagem Teste" />
+            </div>
+            <div className="card__informacoes">
+              <div>
+                <p>Tipo:</p>
+                <p className='ajuste__titulo'>{item.tipo_atividade}</p>
+                <p>Sub-Tipo:</p>
+                <p className='ajuste__texto2'>{item.sub_tipo}</p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "end", justifyContent: "end" }}>
+                <FontAwesomeIcon icon={faCircleXmark} style={{ color: "red", fontSize: "32px" }} />
+              </div>
+              <div className='ajuste__texto'>
+                <p>Área:</p>
+                <p className='ajuste__texto2'>{item.area_de_conhecimento}</p>
+              </div>
+              <p>Data de submissão {format(new Date(item.data_submissao), "dd 'de' MMMM", { locale: ptBR })} | Data de validação {format(new Date(item.data_validacao), "dd 'de' MMMM", { locale: ptBR })}</p>
+              <button className='card__button' onClick={() => sendIdEvento(item.id_atividade)}>Detalhes</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ alignItems: "center", display: "flex", flexDirection: "row" }}>
+        <div id="buttonDivLeft">
+          <Button text="Voltar" color="" pagina='/HomeProfessor' />
         </div>
       </div>
-    );  
+    </div>
+  );
+    
 }
 
 

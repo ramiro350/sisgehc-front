@@ -143,10 +143,10 @@ function Card() {
         {data.map((item: AtividadeComplementar) => (
           <Fragment key={item.id_atividade}>
             <div className="card__container col-3">
-              {/* <div className="card__titulo">
-                <Image src={item.imagem} width={350} height={190} className="img-fluid">
+              <div className="card__titulo">
+                <Image src={"/images/imagem_teste.png"} width={350} height={190} className="img-fluid">
                 </Image>
-              </div> */}
+              </div>
 
               <div className="card__informacoes">
                 <div>

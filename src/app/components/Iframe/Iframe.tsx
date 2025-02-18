@@ -3,14 +3,14 @@
 import { buttonProps, IFrameProps } from '@/types'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import './Iframe.css'
 import Button from '../Button/Button';
 
 const IFrame = ({id}: IFrameProps) =>
 {
-  const [pdfURL, setPdfURL] = useState("");
+  const [pdfURL, setPdfURL] = useState("/teste.pdf");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -39,8 +39,15 @@ const IFrame = ({id}: IFrameProps) =>
       console.error("Erro na requisição:", error);
     }
   };
-  
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = pdfURL;
+    link.download = "certificado.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
     return (
       <div className=''>
@@ -58,9 +65,9 @@ const IFrame = ({id}: IFrameProps) =>
         <div id="buttonDivLeft ">
               <Button text="Voltar" color="" pagina='/HomeProfessor'/>
             </div>
-        <div id="buttonDivRight ">
-              <Button text="Download" color="btn-verde"/>
-            </div>
+        {/* <div id="buttonDivRight ">
+              <button text="Download"  color="btn-md btn-success" onClick={handleDownload}>Download</button>
+            </div> */}
         </div>
       </div>
     );
